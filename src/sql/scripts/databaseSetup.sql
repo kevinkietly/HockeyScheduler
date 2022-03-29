@@ -41,11 +41,11 @@ CREATE TABLE team (
 );
 
 CREATE TABLE competes_in (
-	team_id int,
+	team_id int NOT NULL,
 	game_id int,
 	PRIMARY KEY (team_id),
 	PRIMARY KEY (game_id),
-	FOREIGN KEY (team_id) REFERENCES team NOT NULL,
+	FOREIGN KEY (team_id) REFERENCES team,
 	FOREIGN KEY (game_id) REFERENCES game
 );
 
@@ -59,16 +59,16 @@ CREATE TABLE organization (
 CREATE TABLE coach (
 	coach_id int,
 	name char(100),
-	team_id int,
+	team_id int NOT NULL,
 	PRIMARY KEY (coach_id),
-	FOREIGN KEY (team_id) REFERENCES team NOT NULL
+	FOREIGN KEY (team_id) REFERENCES team
 );
 
 CREATE TABLE coach_since (
 	coach_since char(100),
-	team_id int,
+	team_id int NOT NULL,
 	PRIMARY KEY (team_id),
-	FOREIGN KEY (team_id) REFERENCES team NOT NULL
+	FOREIGN KEY (team_id) REFERENCES team
 );
 
 CREATE TABLE goalie (
@@ -76,9 +76,9 @@ CREATE TABLE goalie (
 	name char(100),
 	num int,
 	plays_in_since char(100),
-	team_id int,
+	team_id int NOT NULL,
 	PRIMARY KEY (player_id),
-	FOREIGN KEY (team_id) REFERENCES team NOT NULL
+	FOREIGN KEY (team_id) REFERENCES team
 );
 
 CREATE TABLE forward (
@@ -86,9 +86,9 @@ CREATE TABLE forward (
 	name char(20),
 	num int,
 	plays_in_since char(100),
-	team_id int,
+	team_id int NOT NULL,
 	PRIMARY KEY (player_id),
-	FOREIGN KEY (team_id) REFERENCES team NOT NULL
+	FOREIGN KEY (team_id) REFERENCES team
 );
 
 CREATE TABLE defense (
@@ -96,7 +96,7 @@ CREATE TABLE defense (
 	name char(20),
 	num int,
 	plays_in_since char(100),
-	team_id int,
+	team_id int NOT NULL,
 	PRIMARY KEY (player_id),
-	FOREIGN KEY (team_id) REFERENCES team NOT NULL
+	FOREIGN KEY (team_id) REFERENCES team
 );
