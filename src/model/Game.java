@@ -22,4 +22,16 @@ public class Game {
     public Team getTeam2() {
         return team2;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTeam1(Team team1) {
+        this.team1 = team1;
+    }
+
+    public void setTeam2(Team team2) {
+        this.team2 = team2;
+    }
 }

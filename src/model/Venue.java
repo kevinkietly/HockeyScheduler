@@ -34,4 +34,24 @@ public class Venue {
     public int getNumRinks() {
         return numRinks;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setNumRooms(int numRooms) {
+        this.numRooms = numRooms;
+    }
+
+    public void setNumSeats(int numSeats) {
+        this.numSeats = numSeats;
+    }
+
+    public void setNumRinks(int numRinks) {
+        this.numRinks = numRinks;
+    }
 }
