@@ -34,4 +34,24 @@ public class Player {
     public int getTeamID() {
         return teamID;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public void setPlays_in_since(String plays_in_since) {
+        this.plays_in_since = plays_in_since;
+    }
+
+    public void setTeamID(int teamID) {
+        this.teamID = teamID;
+    }
 }
