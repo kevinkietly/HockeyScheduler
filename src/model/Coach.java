@@ -1,11 +1,11 @@
 package model;
 
-public class CoachID {
+public class Coach {
     private int id;
     private String name;
     private int teamID;
 
-    public CoachID(int id, String name, int teamID) {
+    public Coach(int id, String name, int teamID) {
         this.id = id;
         this.name = name;
         this.teamID = teamID;

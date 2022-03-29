@@ -1,10 +1,10 @@
 package model;
 
-public class Held_At {
+public class HeltAt {
     public int gameID;
     public String date;
 
-    public Held_At(int gameID, String date) {
+    public HeltAt(int gameID, String date) {
         this.gameID = gameID;
         this.date = date;
     }
