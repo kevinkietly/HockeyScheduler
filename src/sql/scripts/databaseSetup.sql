@@ -20,9 +20,9 @@ Create TABLE regulates_game_at (
     venue_id int,
     date_and_time char(100),
     PRIMARY KEY (game_id, ref_id),
-    FOREIGN KEY (game_id) REFERENCES (game),
-    FOREIGN KEY (ref_id) REFERENCES (referee),
-    FOREIGN KEY (venue_id) REFERENCES (venue)
+    FOREIGN KEY (game_id) REFERENCES game,
+    FOREIGN KEY (ref_id) REFERENCES referee,
+    FOREIGN KEY (venue_id) REFERENCES venue
 );
 
 CREATE TABLE referee (
@@ -37,7 +37,7 @@ CREATE TABLE team (
 	name char(100),
 	org_id int,
 	PRIMARY KEY (team_id),
-	FOREIGN KEY (org_id) REFERENCES (organization)
+	FOREIGN KEY (org_id) REFERENCES organization
 );
 
 CREATE TABLE competes_in (
@@ -45,8 +45,8 @@ CREATE TABLE competes_in (
 	game_id int,
 	PRIMARY KEY (team_id),
 	PRIMARY KEY (game_id),
-	FOREIGN KEY (team_id) REFERENCES (team) NOT NULL,
-	FOREIGN KEY (game_id) REFERENCES (game)
+	FOREIGN KEY (team_id) REFERENCES team NOT NULL,
+	FOREIGN KEY (game_id) REFERENCES game
 );
 
 CREATE TABLE organization (
@@ -61,42 +61,42 @@ CREATE TABLE coach (
 	name char(100),
 	team_id int,
 	PRIMARY KEY (coach_id),
-	FOREIGN KEY (team_id) REFERENCES (team) NOT NULL
+	FOREIGN KEY (team_id) REFERENCES team NOT NULL
 );
 
 CREATE TABLE coach_since (
 	coach_since char(100),
 	team_id int,
 	PRIMARY KEY (team_id),
-	FOREIGN KEY (team_id) REFERENCES (team) NOT NULL
+	FOREIGN KEY (team_id) REFERENCES team NOT NULL
 );
 
 CREATE TABLE goalie (
 	player_id int,
 	name char(100),
-	number int,
+	num int,
 	plays_in_since char(100),
 	team_id int,
 	PRIMARY KEY (player_id),
-	FOREIGN KEY (team_id) REFERENCES (team) NOT NULL
+	FOREIGN KEY (team_id) REFERENCES team NOT NULL
 );
 
 CREATE TABLE forward (
 	player_id int,
 	name char(20),
-	number int,
+	num int,
 	plays_in_since char(100),
 	team_id int,
 	PRIMARY KEY (player_id),
-	FOREIGN KEY (team_id) REFERENCES (team) NOT NULL
+	FOREIGN KEY (team_id) REFERENCES team NOT NULL
 );
 
 CREATE TABLE defense (
 	player_id int,
 	name char(20),
-	number int,
+	num int,
 	plays_in_since char(100),
 	team_id int,
 	PRIMARY KEY (player_id),
-	FOREIGN KEY (team_id) REFERENCES (team) NOT NULL
+	FOREIGN KEY (team_id) REFERENCES team NOT NULL
 );
