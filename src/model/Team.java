@@ -1,2 +1,4 @@
-package model;public class Team {
+package model;
+
+public class Team {
 }
