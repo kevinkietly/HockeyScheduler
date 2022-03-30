@@ -24,7 +24,10 @@ public class DatabaseConnectionHandler {
         }
     }
 
+
     public boolean login(String username, String password) throws SQLException, FileNotFoundException {
+
+    public void close() {
         try {
             if (connection != null) {
                 connection.close();
@@ -58,6 +61,5 @@ public class DatabaseConnectionHandler {
         } catch (FileNotFoundException e) {
             System.out.println(EXCEPTION_TAG + " " + e.getMessage());
         }
-
     }
 }
