@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="Project 304">
   <database-model serializer="dbm" dbms="ORACLE" family-id="ORACLE" format-version="4.32">
-    <root id="1"/>
+    <root id="1">
+      <IntrospectionLevel>3</IntrospectionLevel>
+      <ServerVersion>19.0.0.0.0</ServerVersion>
+      <TablespacesHash>2130123946</TablespacesHash>
+    </root>
     <schema id="2" parent="1" name="ANONYMOUS">
       <IntrospectionL1Timestamp>2022-03-29.07:51:09</IntrospectionL1Timestamp>
       <IntrospectionL2Timestamp>2022-03-29.07:51:09</IntrospectionL2Timestamp>
@@ -1230,13 +1234,11 @@
       <ObjectId>1810</ObjectId>
     </schema>
     <schema id="155" parent="1" name="ORA_DYLANW11">
-      <CreatedTimestamp>2022-03-29.09:45:26</CreatedTimestamp>
       <Current>1</Current>
-      <IntrospectionL1Timestamp>2022-03-29.09:45:27</IntrospectionL1Timestamp>
-      <IntrospectionL2Timestamp>2022-03-29.09:45:27</IntrospectionL2Timestamp>
-      <IntrospectionL3Timestamp>2022-03-29.09:45:27</IntrospectionL3Timestamp>
+      <IntrospectionL1Timestamp>2022-03-29.11:05:06</IntrospectionL1Timestamp>
+      <IntrospectionL2Timestamp>2022-03-29.11:05:06</IntrospectionL2Timestamp>
+      <IntrospectionL3Timestamp>2022-03-29.11:05:06</IntrospectionL3Timestamp>
       <IntrospectionVersion>200820</IntrospectionVersion>
-      <ModifiedTimestamp>2022-03-29.09:45:26</ModifiedTimestamp>
       <ObjectId>1909</ObjectId>
     </schema>
     <schema id="156" parent="1" name="ORA_DYNNWA">
