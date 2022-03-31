@@ -1,18 +1,18 @@
 package model;
 
-public class Organization {
-    private int id;
+public class organization {
+    private int org_id;
     private String name;
     private String city;
 
-    public Organization(int id, String name, String city) {
-        this.id = id;
+    public organization(int org_id, String name, String city) {
+        this.org_id = org_id;
         this.name = name;
         this.city = city;
     }
 
-    public int getId() {
-        return id;
+    public int getOrgID() {
+        return org_id;
     }
 
     public String getName() {
@@ -23,8 +23,8 @@ public class Organization {
         return city;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setOrgID(int org_id) {
+        this.org_id = org_id;
     }
 
     public void setName(String name) {

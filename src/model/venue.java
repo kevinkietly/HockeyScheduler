@@ -1,13 +1,13 @@
 package model;
 
-public class Venue {
+public class venue {
     private int id;
     private String address;
     private int numRooms;
     private int numSeats;
     private int numRinks;
 
-    public Venue(int id, String address, int numRooms, int numSeats, int numRinks) {
+    public venue(int id, String address, int numRooms, int numSeats, int numRinks) {
         this.id = id;
         this.address = address;
         this.numRooms = numRooms;
