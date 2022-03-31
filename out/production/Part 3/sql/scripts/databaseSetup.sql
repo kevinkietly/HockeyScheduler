@@ -24,7 +24,6 @@ CREATE TABLE organization (
 CREATE TABLE referee (
      ref_id int,
      name varchar2(100),
-     role varchar2(100),
      PRIMARY KEY (ref_id)
 );
 
@@ -45,11 +44,12 @@ CREATE TABLE team (
     org_id int,
     PRIMARY KEY (team_id),
     FOREIGN KEY (org_id) REFERENCES organization
+    ON DELETE CASCADE
 );
 
 CREATE TABLE competes_in (
 	team_id int NOT NULL,
-	game_id int,
+	game_id int NOT NULL,
 	PRIMARY KEY (team_id, game_id),
 	FOREIGN KEY (team_id) REFERENCES team,
 	FOREIGN KEY (game_id) REFERENCES game
@@ -106,7 +106,7 @@ INSERT INTO game VALUES(1, 5, 3);
 
 INSERT INTO organization VALUES(1, 'Vancouver ORG', 'Vancouver');
 
-INSERT INTO referee VALUES(1, 'Zebra', 'Referee');
+INSERT INTO referee VALUES(1, 'Zebra');
 
 INSERT INTO regulates_game_at VALUES(1, 1, 1, 'March 25, 2022');
 
