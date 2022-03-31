@@ -107,12 +107,8 @@ INSERT INTO game VALUES(1, 5, 3);
 INSERT INTO organization VALUES(1, 'Vancouver ORG', 'Vancouver');
 
 INSERT INTO referee VALUES(1, 'Zebra', 'Referee');
-INSERT INTO referee VALUES(2, 'Frank', 'Linesman');
-INSERT INTO referee VALUES(3, 'Carl', 'Linesman');
 
 INSERT INTO regulates_game_at VALUES(1, 1, 1, 'March 25, 2022');
-INSERT INTO regulates_game_at VALUES(1, 2, 1, 'March 25, 2022');
-INSERT INTO regulates_game_at VALUES(1, 3, 1, 'March 25, 2022');
 
 INSERT INTO team VALUES(1, 'Bulldogs', 1);
 INSERT INTO team VALUES(2, 'Canucks', 1);
