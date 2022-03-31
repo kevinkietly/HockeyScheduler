@@ -181,38 +181,38 @@ public class DatabaseConnectionHandler {
         ps.close();
     }
 
-//    public void deleteTeam(int team_id) {
-//		try {
-//			String query = "DELETE FROM team WHERE team_id = ?";
-//			PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
-//			ps.setInt(1, team_id);
-//
-//			int rowCount = ps.executeUpdate();
-//			if (rowCount == 0) {
-//				System.out.println(WARNING_TAG + " Branch " + branchId + " does not exist!");
-//			}
-//
-//			connection.commit();
-//			ps.close();
-//		} catch (SQLException e) {
-//			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
-//			rollbackConnection();
-//		}
-//	}
+    public void deleteTeam(int team_id) {
+		try {
+			String query = "DELETE FROM team WHERE team_id = ?";
+			PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
+			ps.setInt(1, team_id);
 
-    public void updatePlayername(defense p, String name) {
-        updatePlayername(p, name, "defense");
+			int rowCount = ps.executeUpdate();
+			if (rowCount == 0) {
+				System.out.println(WARNING_TAG + " Team " + team_id + " does not exist!");
+			}
+
+			connection.commit();
+			ps.close();
+		} catch (SQLException e) {
+			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+			rollbackConnection();
+		}
+	}
+
+    public void updatePlayerName(defense p, String name) {
+        updatePlayerName(p, name, "defense");
     }
 
-    public void updatePlayername(goalie p, String name) {
-        updatePlayername(p, name, "goalie");
+    public void updatePlayerName(goalie p, String name) {
+        updatePlayerName(p, name, "goalie");
     }
 
-    public void updatePlayername(Forward p, String name) {
-        updatePlayername(p, name, "forward");
+    public void updatePlayerName(Forward p, String name) {
+        updatePlayerName(p, name, "forward");
     }
 
-    private void updatePlayername(player p, String name,String ptype) {
+    private void updatePlayerName(player p, String name,String ptype) {
         try {
             String query = "UPDATE ? SET name = ? WHERE player_id = ?";
             PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
@@ -407,7 +407,7 @@ public class DatabaseConnectionHandler {
         return result.toArray(new goalie[result.size()]);
     }
 
-    public regulate_game_at[] getHeltAtInfo() {
+    public regulate_game_at[] getRegGameAtInfo() {
         ArrayList<regulate_game_at> result = new ArrayList<>();
         try {
             String query = "SELECT * FROM regulates_game_at";
