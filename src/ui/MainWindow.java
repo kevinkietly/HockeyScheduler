@@ -1,13 +1,17 @@
 package ui;
 
+import delegates.InsertDelegate;
+
 import javax.swing.*;
 
 public class MainWindow extends JFrame {
     private JPanel mainPanel;
     private JTabbedPane sidebarTabbedPane;
+    private InsertDelegate insertDelegate;
 
-    public MainWindow() {
+    public MainWindow(InsertDelegate insertDelegate) {
         super("Hockey Scheduler");
+        this.insertDelegate = insertDelegate;
         initializeMainPanel();
         initializeSidebarTabbedPane();
         mainPanel.add(sidebarTabbedPane);
@@ -30,7 +34,7 @@ public class MainWindow extends JFrame {
     }
 
     private void initializeSidebarTabs() {
-        sidebarTabbedPane.addTab("Insert", new InsertPanel());
+        sidebarTabbedPane.addTab("Insert", new InsertPanel(insertDelegate));
         sidebarTabbedPane.addTab("Delete", null);
         sidebarTabbedPane.addTab("Update", null);
         sidebarTabbedPane.addTab("Selection", null);

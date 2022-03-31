@@ -173,7 +173,7 @@ public class DatabaseConnectionHandler {
         ps.setString(2, p.getName());
         ps.setInt(3, p.getNumber());
         ps.setString(4, p.getPlays_in_since());
-        ps.setInt(3, p.getTeamID());
+        ps.setInt(5, p.getTeamID());
 
         ps.executeUpdate();
         connection.commit();
