@@ -2,15 +2,16 @@ package controller;
 
 import com.formdev.flatlaf.intellijthemes.FlatNordIJTheme;
 import database.DatabaseConnectionHandler;
+import delegates.InsertDelegate;
 import delegates.LoginWindowDelegate;
-import delegates.MainWindowDelegate;
+import model.Forward;
 import ui.LoginWindow;
 import ui.MainWindow;
 
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 
-public class HockeyScheduler implements LoginWindowDelegate, MainWindowDelegate {
+public class HockeyScheduler implements LoginWindowDelegate, InsertDelegate {
     private DatabaseConnectionHandler dbHandler;
     private LoginWindow loginWindow;
 
@@ -32,14 +33,13 @@ public class HockeyScheduler implements LoginWindowDelegate, MainWindowDelegate 
         boolean isConnected = dbHandler.login(username, password);
         if (isConnected) {
             loginWindow.dispose();
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = new MainWindow(this);
         } else {
             loginWindow.handleLoginFailed();
         }
     }
 
-    @Override
-    public void databaseSetup() {
-        dbHandler.databaseSetup();
+    public void insertPlayer(Forward p) {
+        dbHandler.insertPlayer(p);
     }
 }
