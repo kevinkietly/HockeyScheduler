@@ -1,5 +1,5 @@
 CREATE TABLE venue (
-	venue_id int,
+	venue_id int NOT NULL,
 	address varchar2(100) NOT NULL,
 	rooms int,
 	seats int,
@@ -8,29 +8,29 @@ CREATE TABLE venue (
 );
 
 CREATE TABLE game (
-	game_id int,
+	game_id int NOT NULL,
 	team1_score int,
 	team2_score int,
 	PRIMARY KEY (game_id)
 );
 
 CREATE TABLE organization (
-      org_id int,
+      org_id int NOT NULL,
       name varchar2(100),
       city varchar2(100),
       PRIMARY KEY (org_id)
 );
 
 CREATE TABLE referee (
-     ref_id int,
+     ref_id int NOT NULL,
      name varchar2(100),
      PRIMARY KEY (ref_id)
 );
 
 CREATE TABLE regulates_game_at (
-	game_id int,
-	ref_id int,
-    venue_id int,
+	game_id int NOT NULL,
+	ref_id int NOT NULL,
+    venue_id int NOT NULL,
     date_and_time varchar2(100),
     PRIMARY KEY (game_id),
     FOREIGN KEY (game_id) REFERENCES game,
@@ -39,9 +39,9 @@ CREATE TABLE regulates_game_at (
 );
 
 CREATE TABLE team (
-    team_id int,
+    team_id int NOT NULL,
     name varchar2(100),
-    org_id int,
+    org_id int NOT NULL,
     PRIMARY KEY (team_id),
     FOREIGN KEY (org_id) REFERENCES organization
     ON DELETE CASCADE
@@ -56,7 +56,7 @@ CREATE TABLE competes_in (
 );
 
 CREATE TABLE coach (
-	coach_id int,
+	coach_id int NOT NULL,
 	name varchar2(100),
 	team_id int NOT NULL,
 	PRIMARY KEY (coach_id),
@@ -71,7 +71,7 @@ CREATE TABLE coach_since (
 );
 
 CREATE TABLE goalie (
-	player_id int,
+	player_id int NOT NULL,
 	name varchar2(100),
 	num int,
 	plays_in_since varchar2(100),
@@ -81,8 +81,8 @@ CREATE TABLE goalie (
 );
 
 CREATE TABLE forward (
-	player_id int,
-	name varchar2(20),
+	player_id int NOT NULL,
+	name varchar2(100),
 	num int,
 	plays_in_since varchar2(100),
 	team_id int NOT NULL,
@@ -91,8 +91,8 @@ CREATE TABLE forward (
 );
 
 CREATE TABLE defense (
-	player_id int,
-	name varchar2(20),
+	player_id int NOT NULL,
+	name varchar2(100),
 	num int,
 	plays_in_since varchar2(100),
 	team_id int NOT NULL,
