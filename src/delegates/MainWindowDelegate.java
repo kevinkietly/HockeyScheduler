@@ -1,8 +1,6 @@
 package delegates;
 import model.*;
 public interface MainWindowDelegate {
-    void databaseSetup();
-
     public void insertPlayer(goalie p);
     public void insertPlayer(defense p);
     public void insertPlayer(Forward p);
@@ -10,9 +8,10 @@ public interface MainWindowDelegate {
     public void updatePlayerName(goalie p,String name);
     public void updatePlayerName(defense p,String name);
     public void updatePlayerName(Forward p,String name);
+    public void selectSpaciousVenues(int minRooms);
+    public void getTeamNames();
     public void allGameParticipants();
     public void maxSeats();
-    //	public void updatePlayername(Player p, String name);
     public void showCoaches();
     public void showCoachSince();
     public void showDefenses();

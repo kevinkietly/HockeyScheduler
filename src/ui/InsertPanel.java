@@ -1,6 +1,6 @@
 package ui;
 
-import delegates.InsertDelegate;
+import delegates.MainWindowDelegate;
 import model.Forward;
 
 import javax.swing.*;
@@ -17,9 +17,9 @@ public class InsertPanel extends JPanel {
     private JTextField playsInSinceField;
     private JTextField teamIDField;
 
-    private InsertDelegate delegate;
+    private MainWindowDelegate delegate;
 
-    public InsertPanel(InsertDelegate delegate) {
+    public InsertPanel(MainWindowDelegate delegate) {
         this.delegate = delegate;
         setLayout(new GridBagLayout());
         playerIDField = new JTextField(20);

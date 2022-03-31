@@ -1,18 +1,17 @@
 package controller;
-import model.*;
 
 import com.formdev.flatlaf.intellijthemes.FlatNordIJTheme;
 import database.DatabaseConnectionHandler;
-import delegates.InsertDelegate;
 import delegates.LoginWindowDelegate;
-import model.Forward;
+import delegates.MainWindowDelegate;
+import model.*;
 import ui.LoginWindow;
 import ui.MainWindow;
 
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 
-public class HockeyScheduler implements LoginWindowDelegate, InsertDelegate {
+public class HockeyScheduler implements LoginWindowDelegate, MainWindowDelegate {
     private DatabaseConnectionHandler dbHandler;
     private LoginWindow loginWindow;
 
@@ -38,10 +37,6 @@ public class HockeyScheduler implements LoginWindowDelegate, InsertDelegate {
         } else {
             loginWindow.handleLoginFailed();
         }
-    }
-
-    public void insertPlayer(Forward p) {
-        dbHandler.insertPlayer(p);
     }
 
     @Override
@@ -77,6 +72,18 @@ public class HockeyScheduler implements LoginWindowDelegate, InsertDelegate {
     @Override
     public void updatePlayerName(Forward p,String name) {
         dbHandler.updatePlayerName(p,name);
+    }
+
+    @Override
+    public void selectSpaciousVenues(int minRooms) {
+        venue[] spaciousVenues = dbHandler.selectSpaciousVenues(minRooms);
+        //Link up with GUI implementation
+    }
+
+    @Override
+    public void getTeamNames() {
+        String[] names = dbHandler.getTeamNames();
+        //Link up with GUI implementation
     }
 
     @Override
