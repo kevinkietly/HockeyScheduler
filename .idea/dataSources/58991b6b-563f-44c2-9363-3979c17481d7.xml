@@ -1234,10 +1234,9 @@
       <ObjectId>1810</ObjectId>
     </schema>
     <schema id="155" parent="1" name="ORA_DYLANW11">
-      <Current>1</Current>
-      <IntrospectionL1Timestamp>2022-03-29.11:05:06</IntrospectionL1Timestamp>
-      <IntrospectionL2Timestamp>2022-03-29.11:05:06</IntrospectionL2Timestamp>
-      <IntrospectionL3Timestamp>2022-03-29.11:05:06</IntrospectionL3Timestamp>
+      <IntrospectionL1Timestamp>2022-03-30.06:31:27</IntrospectionL1Timestamp>
+      <IntrospectionL2Timestamp>2022-03-30.06:31:27</IntrospectionL2Timestamp>
+      <IntrospectionL3Timestamp>2022-03-30.06:31:27</IntrospectionL3Timestamp>
       <IntrospectionVersion>200820</IntrospectionVersion>
       <ObjectId>1909</ObjectId>
     </schema>
@@ -2823,11 +2822,12 @@
     </schema>
     <schema id="352" parent="1" name="ORA_MANGUOO">
       <CreatedTimestamp>2022-03-09.03:11:23</CreatedTimestamp>
-      <IntrospectionL1Timestamp>2022-03-29.07:51:09</IntrospectionL1Timestamp>
-      <IntrospectionL2Timestamp>2022-03-29.07:51:09</IntrospectionL2Timestamp>
-      <IntrospectionL3Timestamp>2022-03-29.07:51:09</IntrospectionL3Timestamp>
+      <Current>1</Current>
+      <IntrospectionL1Timestamp>2022-03-30.06:54:07</IntrospectionL1Timestamp>
+      <IntrospectionL2Timestamp>2022-03-30.06:54:07</IntrospectionL2Timestamp>
+      <IntrospectionL3Timestamp>2022-03-30.06:54:07</IntrospectionL3Timestamp>
       <IntrospectionVersion>200820</IntrospectionVersion>
-      <ModifiedTimestamp>2022-03-09.03:11:23</ModifiedTimestamp>
+      <ModifiedTimestamp>2022-03-30.06:47:26</ModifiedTimestamp>
       <ObjectId>1495</ObjectId>
     </schema>
     <schema id="353" parent="1" name="ORA_MAOCY98">
@@ -4896,6 +4896,9 @@
     </schema>
     <schema id="611" parent="1" name="PUBLIC">
       <CreatedTimestamp>2019-04-16.17:56:16</CreatedTimestamp>
+      <IntrospectionL1Timestamp>2022-03-30.06:24:56</IntrospectionL1Timestamp>
+      <IntrospectionL2Timestamp>2022-03-30.06:24:56</IntrospectionL2Timestamp>
+      <IntrospectionL3Timestamp>2022-03-30.06:24:56</IntrospectionL3Timestamp>
       <IntrospectionVersion>200820</IntrospectionVersion>
       <ModifiedTimestamp>2020-12-28.11:16:25</ModifiedTimestamp>
       <ObjectId>1</ObjectId>
@@ -6054,7 +6057,9 @@
       <ObjectId>1312</ObjectId>
     </user>
     <user id="976" parent="1" name="ORA_MANGUOO">
+      <DefaultTablespace>USERS</DefaultTablespace>
       <ObjectId>1495</ObjectId>
+      <TemporaryTablespace>TEMP</TemporaryTablespace>
     </user>
     <user id="977" parent="1" name="ORA_MAOCY98">
       <ObjectId>1623</ObjectId>
@@ -6869,5 +6874,52 @@
     <user id="1247" parent="1" name="XS$NULL">
       <ObjectId>2147483638</ObjectId>
     </user>
+    <table id="1248" parent="352" name="BRANCH">
+      <CreatedTimestamp>2022-03-30.06:47:26</CreatedTimestamp>
+      <DetailsLevel>3</DetailsLevel>
+      <ModifiedTimestamp>2022-03-30.06:47:26</ModifiedTimestamp>
+      <ObjectId>873021</ObjectId>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <column id="1249" parent="1248" name="BRANCH_ID">
+      <DataType>NUMBER(*)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="1250" parent="1248" name="BRANCH_NAME">
+      <DataType>VARCHAR2(20 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="1251" parent="1248" name="BRANCH_ADDR">
+      <DataType>VARCHAR2(50 byte)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="1252" parent="1248" name="BRANCH_CITY">
+      <DataType>VARCHAR2(20 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="1253" parent="1248" name="BRANCH_PHONE">
+      <DataType>NUMBER(*)|0s</DataType>
+      <Position>5</Position>
+    </column>
+    <index id="1254" parent="1248" name="SYS_C00981048">
+      <ColNames>BRANCH_ID</ColNames>
+      <CreatedTimestamp>2022-03-30.06:47:26</CreatedTimestamp>
+      <ModifiedTimestamp>2022-03-30.06:47:26</ModifiedTimestamp>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>873022</ObjectId>
+      <TablespaceName>USERS</TablespaceName>
+      <Unique>1</Unique>
+    </index>
+    <key id="1255" parent="1248" name="SYS_C00981048">
+      <ColNames>BRANCH_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <ModifiedTimestamp>2022-03-30.06:47:26</ModifiedTimestamp>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>SYS_C00981048</UnderlyingIndexName>
+    </key>
   </database-model>
 </dataSource>

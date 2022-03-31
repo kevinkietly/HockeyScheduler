@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DatabaseConnectionHandler {
     private static final String EXCEPTION_TAG = "[EXCEPTION]";
@@ -26,14 +27,12 @@ public class DatabaseConnectionHandler {
         }
     }
 
-
-    public boolean login(String username, String password) throws SQLException, FileNotFoundException {
+    public boolean login(String username, String password) {
         try {
             if (connection != null) {
                 connection.close();
             }
-            connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1522:stu", "ora_dylanw11", "a29033891");
-            //connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1522:stu", username, password);
+            connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1522:stu", username, password);
             connection.setAutoCommit(false);
             System.out.println("\nConnected to Oracle!");
             databaseSetup();
@@ -54,28 +53,50 @@ public class DatabaseConnectionHandler {
 
     public void databaseSetup() {
         ScriptRunner sr = new ScriptRunner(connection);
+
+        // Drop All Tables before setup
+        dropTablesIfExist();
+
         //Creating a reader object
         try {
             Reader reader = new BufferedReader(new FileReader("src/sql/scripts/databaseSetup.sql"));
             sr.runScript(reader);
+
         } catch (FileNotFoundException e) {
             System.out.println(EXCEPTION_TAG + " " + e.getMessage());
         }
     }
 
+    // Drop All Tables
     private void dropTablesIfExist() {
         try {
+            // Get all existing table names
             String query = "select table_name from user_tables";
             PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
             ResultSet rs = ps.executeQuery();
 
+            // Put all names in a list to iterate over
+            ArrayList<String> tableList = new ArrayList<>();
             while(rs.next()) {
                 String name = rs.getString(1).toLowerCase();
-                ps. execute("DROP TABLE "+name);
+                tableList.add(name);
             }
 
+            // Iterate backwards through the list (to avoid dropping tables that other tables depend on)
+            while(!tableList.isEmpty()) {
+                String name = tableList.get(tableList.size() - 1);
+
+                query = "DROP TABLE " +name;
+                ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
+                ps.executeQuery();
+
+                tableList.remove(tableList.size() - 1);
+            }
+
+            // Close ps and rs
             rs.close();
             ps.close();
+
         } catch (SQLException e) {
             System.out.println(EXCEPTION_TAG + " " + e.getMessage());
         }
