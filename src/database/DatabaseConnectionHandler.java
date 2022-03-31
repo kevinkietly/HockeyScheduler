@@ -39,97 +39,6 @@ public class DatabaseConnectionHandler {
         }
     }
 
-//	public void deleteBranch(int branchId) {
-//		try {
-//			String query = "DELETE FROM branch WHERE branch_id = ?";
-//			PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
-//			ps.setInt(1, branchId);
-//
-//			int rowCount = ps.executeUpdate();
-//			if (rowCount == 0) {
-//				System.out.println(WARNING_TAG + " Branch " + branchId + " does not exist!");
-//			}
-//
-//			connection.commit();
-//
-//			ps.close();
-//		} catch (SQLException e) {
-//			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
-//			rollbackConnection();
-//		}
-//	}
-//
-//	public void insertBranch(BranchModel model) {
-//		try {
-//			String query = "INSERT INTO branch VALUES (?,?,?,?,?)";
-//			PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
-//			ps.setInt(1, model.getId());
-//			ps.setString(2, model.getName());
-//			ps.setString(3, model.getAddress());
-//			ps.setString(4, model.getCity());
-//			if (model.getPhoneNumber() == 0) {
-//				ps.setNull(5, java.sql.Types.INTEGER);
-//			} else {
-//				ps.setInt(5, model.getPhoneNumber());
-//			}
-//
-//			ps.executeUpdate();
-//			connection.commit();
-//
-//			ps.close();
-//		} catch (SQLException e) {
-//			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
-//			rollbackConnection();
-//		}
-//	}
-//
-//	public BranchModel[] getBranchInfo() {
-//		ArrayList<BranchModel> result = new ArrayList<BranchModel>();
-//
-//		try {
-//			String query = "SELECT * FROM branch";
-//			PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
-//			ResultSet rs = ps.executeQuery();
-//
-//			while(rs.next()) {
-//				BranchModel model = new BranchModel(rs.getString("branch_addr"),
-//						rs.getString("branch_city"),
-//						rs.getInt("branch_id"),
-//						rs.getString("branch_name"),
-//						rs.getInt("branch_phone"));
-//				result.add(model);
-//			}
-//
-//			rs.close();
-//			ps.close();
-//		} catch (SQLException e) {
-//			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
-//		}
-//
-//		return result.toArray(new BranchModel[result.size()]);
-//	}
-//
-//	public void updateBranch(int id, String name) {
-//		try {
-//			String query = "UPDATE branch SET branch_name = ? WHERE branch_id = ?";
-//			PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
-//			ps.setString(1, name);
-//			ps.setInt(2, id);
-//
-//			int rowCount = ps.executeUpdate();
-//			if (rowCount == 0) {
-//				System.out.println(WARNING_TAG + " Branch " + id + " does not exist!");
-//			}
-//
-//			connection.commit();
-//
-//			ps.close();
-//		} catch (SQLException e) {
-//			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
-//			rollbackConnection();
-//		}
-//	}
-
     // insert a Goalie, given a Goalie p
     // (Called from GUI)
     public void insertPlayer(goalie p) {
@@ -232,6 +141,51 @@ public class DatabaseConnectionHandler {
             System.out.println(EXCEPTION_TAG + " " + e.getMessage());
             rollbackConnection();
         }
+    }
+
+    public venue[] selectSpaciousVenues(int minRooms) {
+        ArrayList<venue> result = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM venue WHERE rooms <= ?";
+            PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
+            ps.setInt(1, minRooms);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                venue v = new venue(rs.getInt("venue_id"),
+                        rs.getString("address"),
+                        rs.getInt("rooms"),
+                        rs.getInt("seats"),
+                        rs.getInt("num_rinks"));
+                result.add(v);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+        }
+        return result.toArray(new venue[result.size()]);
+    }
+
+    public String[] getTeamNames() {
+        // For Projection: also implement in this function? Or make another function?
+        // Answer: NO becuase we'll just have one field filled and all other null\
+
+        ArrayList<String> result = new ArrayList<>();
+        try {
+            String query = "SELECT name FROM team";
+            PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                result.add(rs.getString("name"));
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+        }
+        return result.toArray(new String[result.size()]);
     }
 
     // For join, do we wanna abstract smth into a new, temporary class?
