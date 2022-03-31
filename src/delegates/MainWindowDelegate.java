@@ -1,5 +1,28 @@
 package delegates;
-
+import model.*;
 public interface MainWindowDelegate {
     void databaseSetup();
+
+    public void insertPlayer(goalie p);
+    public void insertPlayer(defense p);
+    public void insertPlayer(Forward p);
+    public void deleteTeam(int team_id);
+    public void updatePlayerName(goalie p,String name);
+    public void updatePlayerName(defense p,String name);
+    public void updatePlayerName(Forward p,String name);
+    public void allGameParticipants();
+    public void maxSeats();
+    //	public void updatePlayername(Player p, String name);
+    public void showCoaches();
+    public void showCoachSince();
+    public void showDefenses();
+    public void showForwards();
+    public void showGames();
+    public void showGoalies();
+    public void showOrganizations();
+    public void showPlayers();
+    public void showReferees();
+    public void showRegulateGameAt();
+    public void showTeams();
+    public void showVenues();
 }
