@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class DatabaseConnectionHandler {
     private static final String EXCEPTION_TAG = "[EXCEPTION]";
+    private static final String WARNING_TAG = "[WARNING]";
     private Connection connection;
 
     public DatabaseConnectionHandler() {
@@ -180,6 +181,60 @@ public class DatabaseConnectionHandler {
         ps.close();
     }
 
+//    public void deleteTeam(int team_id) {
+//		try {
+//			String query = "DELETE FROM team WHERE team_id = ?";
+//			PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
+//			ps.setInt(1, team_id);
+//
+//			int rowCount = ps.executeUpdate();
+//			if (rowCount == 0) {
+//				System.out.println(WARNING_TAG + " Branch " + branchId + " does not exist!");
+//			}
+//
+//			connection.commit();
+//
+//			ps.close();
+//		} catch (SQLException e) {
+//			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+//			rollbackConnection();
+//		}
+//	}
+
+    public void updatePlayername(defense p, String name) {
+        updatePlayername(p, name, "defense");
+    }
+
+    public void updatePlayername(goalie p, String name) {
+        updatePlayername(p, name, "goalie");
+    }
+
+    public void updatePlayername(Forward p, String name) {
+        updatePlayername(p, name, "forward");
+    }
+
+    private void updatePlayername(player p, String name,String ptype) {
+        try {
+            String query = "UPDATE ? SET name = ? WHERE player_id = ?";
+            PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
+            ps.setString(1, ptype);
+            ps.setString(2, name);
+            ps.setInt(3, p.getPlayerID());
+
+            int rowCount = ps.executeUpdate();
+            if (rowCount == 0) {
+                System.out.println(WARNING_TAG + " Player of Type "+ptype+" and ID " + p.getPlayerID() + " does not exist!");
+            }
+
+            connection.commit();
+
+            ps.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+            rollbackConnection();
+        }
+    }
+
     // For join, do we wanna abstract smth into a new, temporary class?
     // I think we might need to do this for selection/projection as well
 
@@ -218,27 +273,6 @@ public class DatabaseConnectionHandler {
         }
         return max;
     }
-
-//	public void updatePlayername(Player p, String name) {
-//		try {
-//			String query = "UPDATE player SET branch_name = ? WHERE branch_id = ?";
-//			PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
-//			ps.setString(1, name);
-//			ps.setInt(2, id);
-//
-//			int rowCount = ps.executeUpdate();
-//			if (rowCount == 0) {
-//				System.out.println(WARNING_TAG + " Branch " + id + " does not exist!");
-//			}
-//
-//			connection.commit();
-//
-//			ps.close();
-//		} catch (SQLException e) {
-//			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
-//			rollbackConnection();
-//		}
-//	}
 
     public coach[] getCoachInfo() {
         ArrayList<coach> result = new ArrayList<>();
