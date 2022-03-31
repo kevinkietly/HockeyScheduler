@@ -1,22 +1,22 @@
 package model;
 
-public class Player {
-    private int id;
+public class player {
+    private int player_id;
     private String name;
     private int number;
     private String plays_in_since;
-    private int teamID;
+    private int team_id;
 
-    public Player(int id, String name, int number, String plays_in_since, int teamID) {
-        this.id = id;
+    public player(int player_id, String name, int number, String plays_in_since, int team_id) {
+        this.player_id = player_id;
         this.name = name;
         this.number = number;
         this.plays_in_since = plays_in_since;
-        this.teamID = teamID;
+        this.team_id = team_id;
     }
 
-    public int getId() {
-        return id;
+    public int getPlayerID() {
+        return player_id;
     }
 
     public String getName() {
@@ -32,11 +32,11 @@ public class Player {
     }
 
     public int getTeamID() {
-        return teamID;
+        return team_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPlayerID(int player_id) {
+        this.player_id = player_id;
     }
 
     public void setName(String name) {
@@ -51,7 +51,7 @@ public class Player {
         this.plays_in_since = plays_in_since;
     }
 
-    public void setTeamID(int teamID) {
-        this.teamID = teamID;
+    public void setTeamID(int team_id) {
+        this.team_id = team_id;
     }
 }

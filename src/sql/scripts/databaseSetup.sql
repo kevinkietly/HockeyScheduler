@@ -9,8 +9,8 @@ CREATE TABLE venue (
 
 CREATE TABLE game (
 	game_id int,
-	team_1_score int,
-	team_2_score int,
+	team1_score int,
+	team2_score int,
 	PRIMARY KEY (game_id)
 );
 
@@ -33,18 +33,18 @@ CREATE TABLE regulates_game_at (
 	ref_id int,
     venue_id int,
     date_and_time varchar2(100),
-    PRIMARY KEY (game_id, ref_id),
+    PRIMARY KEY (game_id),
     FOREIGN KEY (game_id) REFERENCES game,
     FOREIGN KEY (ref_id) REFERENCES referee,
     FOREIGN KEY (venue_id) REFERENCES venue
 );
 
 CREATE TABLE team (
-	team_id int,
-	name varchar2(100),
-	org_id int,
-	PRIMARY KEY (team_id),
-	FOREIGN KEY (org_id) REFERENCES organization
+    team_id int,
+    name varchar2(100),
+    org_id int,
+    PRIMARY KEY (team_id),
+    FOREIGN KEY (org_id) REFERENCES organization
 );
 
 CREATE TABLE competes_in (

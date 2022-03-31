@@ -1,12 +1,12 @@
 package model;
 
-public class RegulatesGameAt {
+public class regulate_game_at {
     private int gameID;
     private int refID;
     private int venueID;
     private String date;
 
-    public RegulatesGameAt(int gameID, int refID, int venueID, String date) {
+    public regulate_game_at(int gameID, int refID, int venueID, String date) {
         this.gameID = gameID;
         this.refID = refID;
         this.venueID = venueID;
