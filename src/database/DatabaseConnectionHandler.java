@@ -193,7 +193,6 @@ public class DatabaseConnectionHandler {
 //			}
 //
 //			connection.commit();
-//
 //			ps.close();
 //		} catch (SQLException e) {
 //			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
