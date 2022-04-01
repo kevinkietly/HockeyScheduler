@@ -39,7 +39,7 @@ public class MainWindow extends JFrame {
         sidebarTabbedPane.addTab("Delete", new DeletePanel(delegate));
         sidebarTabbedPane.addTab("Update", new UpdatePanel(delegate));
         sidebarTabbedPane.addTab("Selection", new selectionPanel(delegate));
-        sidebarTabbedPane.addTab("Projection", null);
+        sidebarTabbedPane.addTab("Projection", new ProjectionPanel(delegate));
         sidebarTabbedPane.addTab("Join", new JoinPanel(delegate));
         sidebarTabbedPane.addTab("Aggregation", null);
         sidebarTabbedPane.addTab("Nested Aggregation with Group By", null);

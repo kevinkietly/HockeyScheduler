@@ -199,16 +199,17 @@ public class DatabaseConnectionHandler {
         return result.toArray(new venue[result.size()]);
     }
 
-    public String[] getTeamNames() {
+    public String[] getTeamProjection(String column) {
 
         ArrayList<String> result = new ArrayList<>();
         try {
-            String query = "SELECT name FROM team";
+            String query = "SELECT ? FROM team";
             PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
+            ps.setString(1, column);
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()) {
-                result.add(rs.getString("name"));
+                result.add(column);
             }
             rs.close();
             ps.close();

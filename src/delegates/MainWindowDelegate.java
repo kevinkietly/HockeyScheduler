@@ -11,7 +11,7 @@ public interface MainWindowDelegate {
     public void updatePlayerName(forward p, String name);
     public String[] goaliesUnderCoachName(String name);
     public venue[] selectSpaciousVenues(int minRooms);
-    public void getTeamNames();
+    public void getTeamProjection(String column);
     public void allGameParticipants();
     public void maxSeats();
     public void showCoaches();
