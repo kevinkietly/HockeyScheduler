@@ -92,8 +92,8 @@ public class HockeyScheduler implements LoginWindowDelegate, MainWindowDelegate 
     }
 
     @Override
-    public void getTeamProjection(String column) {
-        String[] names = dbHandler.getTeamProjection(column);
+    public Object[] getTeamProjection(String column) {
+        return dbHandler.getTeamProjection(column);
     }
 
     @Override
