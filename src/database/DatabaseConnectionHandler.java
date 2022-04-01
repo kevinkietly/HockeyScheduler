@@ -178,7 +178,7 @@ public class DatabaseConnectionHandler {
     public venue[] selectSpaciousVenues(int minRooms) {
         ArrayList<venue> result = new ArrayList<>();
         try {
-            String query = "SELECT * FROM venue WHERE rooms <= ?";
+            String query = "SELECT * FROM venue WHERE rooms >= ?";
             PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
             ps.setInt(1, minRooms);
             ResultSet rs = ps.executeQuery();
