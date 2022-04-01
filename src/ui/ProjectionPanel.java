@@ -3,6 +3,7 @@ package ui;
 import delegates.MainWindowDelegate;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,12 +48,34 @@ public class ProjectionPanel extends JPanel {
     }
 
     private void handleProjection() {
+        String column[];
+        Object[] rs;
         if (comboBox.getSelectedIndex() == 0) {
-            delegate.getTeamProjection("name");
+            rs = delegate.getTeamProjection("name");
+            column = new String[]{"Team Name"};
         } else if (comboBox.getSelectedIndex() == 1) {
-            delegate.getTeamProjection("team_id");
+            rs = delegate.getTeamProjection("team_id");
+            column = new String[]{"Team ID"};
         } else {
-            delegate.getTeamProjection("org_id");
+            rs = delegate.getTeamProjection("org_id");
+            column = new String[]{"Team Org ID"};
         }
+        Object data[][] = new Object[rs.length][1];
+        for (int i = 0; i < rs.length; i++) {
+            System.out.println(rs[i]);
+            data[i][0] = rs[i];
+        }
+        DefaultTableModel model = new DefaultTableModel(data, column);
+        JTable table = new JTable(model);
+        table.setShowGrid(true);
+        table.setShowVerticalLines(true);
+        JScrollPane pane = new JScrollPane(table);
+        JFrame f = new JFrame("Projection");
+        JPanel panel = new JPanel();
+        panel.add(pane);
+        f.add(panel);
+        f.setSize(500, 250);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
     }
 }
