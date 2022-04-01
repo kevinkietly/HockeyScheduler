@@ -4,6 +4,7 @@ import delegates.MainWindowDelegate;
 import model.*;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -62,110 +63,145 @@ public class ViewPanel extends JPanel {
         if (comboBox.getSelectedIndex() == 0) {
             player[] table = delegate.showPlayers();
             //Stub output to double-check functionality
-            for (player i: table) {
-                System.out.println("Player "+i.getPlayerID()+":");
-                System.out.println("Unique Description is: "+i.getName()+"\n");
+            String column[] = {"ID", "Name"};
+            Object data[][] = new Object[table.length][2];
+            for (int i = 0; i < table.length; i++) {
+                data[i][0] = table[i].getPlayerID();
+                data[i][1] = table[i].getName();
             }
-            // Scroll-Down Table Display - TO BE IMPLEMENTED
+            displayTable(column, data, "All Players");
         } else if (comboBox.getSelectedIndex() == 1) {
             defense[] table = delegate.showDefenses();
             //Stub output to double-check functionality
-            for (defense i: table) {
-                System.out.println("Defense Player "+i.getPlayerID()+":");
-                System.out.println("Unique Description is: "+i.getName()+"\n");
+            String column[] = {"ID", "Name"};
+            Object data[][] = new Object[table.length][2];
+            for (int i = 0; i < table.length; i++) {
+                data[i][0] = table[i].getPlayerID();
+                data[i][1] = table[i].getName();
             }
-            // Scroll-Down Table Display - TO BE IMPLEMENTED
+            displayTable(column, data, "Defensemen");
         } else if (comboBox.getSelectedIndex() == 2) {
             forward[] table = delegate.showForwards();
-            //Stub output to double-check functionality
-            for (forward i: table) {
-                System.out.println("Forward Player "+i.getPlayerID()+":");
-                System.out.println("Unique Description is: "+i.getName()+"\n");
+            String column[] = {"ID", "Name"};
+            Object data[][] = new Object[table.length][2];
+            for (int i = 0; i < table.length; i++) {
+                data[i][0] = table[i].getPlayerID();
+                data[i][1] = table[i].getName();
             }
-            // Scroll-Down Table Display - TO BE IMPLEMENTED
+            displayTable(column, data, "Forwards");
         } else if (comboBox.getSelectedIndex() == 3) {
             goalie[] table = delegate.showGoalies();
-            //Stub output to double-check functionality
-            for (player i: table) {
-                System.out.println("Goalie Player "+i.getPlayerID()+":");
-                System.out.println("Unique Description is: "+i.getName()+"\n");
+            String column[] = {"ID", "Name"};
+            Object data[][] = new Object[table.length][2];
+            for (int i = 0; i < table.length; i++) {
+                data[i][0] = table[i].getPlayerID();
+                data[i][1] = table[i].getName();
             }
-            // Scroll-Down Table Display - TO BE IMPLEMENTED
+            displayTable(column, data, "Goalies");
         } else if (comboBox.getSelectedIndex() == 4) {
             coach[] table = delegate.showCoaches();
-            //Stub output to double-check functionality
-            for (coach i: table) {
-                System.out.println("Player "+i.getCoachID()+":");
-                System.out.println("Unique Description is: "+i.getName()+"\n");
+            String column[] = {"ID", "Name"};
+            Object data[][] = new Object[table.length][2];
+            for (int i = 0; i < table.length; i++) {
+                data[i][0] = table[i].getCoachID();
+                data[i][1] = table[i].getName();
             }
-            // Scroll-Down Table Display - TO BE IMPLEMENTED
+            displayTable(column, data, "Coaches");
         } else if (comboBox.getSelectedIndex() == 5) {
             coach_since[] table = delegate.showCoachSince();
-            //Stub output to double-check functionality
-            for (coach_since i: table) {
-                System.out.println("Coaching Since "+i.getCoachingSince()+":");
-                System.out.println("For Team "+i.getTeamID()+"\n");
+            String column[] = {"ID", "Coaching Since"};
+            Object data[][] = new Object[table.length][2];
+            for (int i = 0; i < table.length; i++) {
+                data[i][0] = table[i].getTeamID();
+                data[i][1] = table[i].getCoachingSince();
             }
-            // Scroll-Down Table Display - TO BE IMPLEMENTED
+            displayTable(column, data, "Coaching Since");
         } else if (comboBox.getSelectedIndex() == 6) {
             team[] table = delegate.showTeams();
-            //Stub output to double-check functionality
-            for (team i: table) {
-                System.out.println("Team "+i.getTeamID()+":");
-                System.out.println("Unique Description is: "+i.getName()+"\n");
+            String column[] = {"Name", "ID", "Org ID"};
+            Object data[][] = new Object[table.length][3];
+            for (int i = 0; i < table.length; i++) {
+                data[i][0] = table[i].getName();
+                data[i][1] = table[i].getTeamID();
+                data[i][2] = table[i].getOrgID();
             }
-            // Scroll-Down Table Display - TO BE IMPLEMENTED
+            displayTable(column, data, "Teams");
         } else if (comboBox.getSelectedIndex() == 7) {
             organization[] table = delegate.showOrganizations();
-            //Stub output to double-check functionality
-            for (organization i: table) {
-                System.out.println("Organization "+i.getOrgID()+":");
-                System.out.println("Unique Description is: "+i.getName()+"\n");
+            String column[] = {"Name", "Org ID", "City"};
+            Object data[][] = new Object[table.length][3];
+            for (int i = 0; i < table.length; i++) {
+                data[i][0] = table[i].getName();
+                data[i][1] = table[i].getOrgID();
+                data[i][2] = table[i].getCity();
             }
-            // Scroll-Down Table Display - TO BE IMPLEMENTED
+            displayTable(column, data, "Organizations");
         } else if (comboBox.getSelectedIndex() == 8) {
             game[] table = delegate.showGames();
-            //Stub output to double-check functionality
-            for (game i: table) {
-                System.out.println("Player "+i.getGameID()+":");
-                System.out.println("Unique Description is: "+i.getTeam1ID()+" and "+i.getTeam2ID()+"\n");
+            String column[] = {"Game ID", "Team 1 Score", "Team 2 Score"};
+            Object data[][] = new Object[table.length][3];
+            for (int i = 0; i < table.length; i++) {
+                data[i][0] = table[i].getGameID();
+                data[i][1] = table[i].getTeam1Score();
+                data[i][2] = table[i].getTeam2Score();
             }
-            // Scroll-Down Table Display - TO BE IMPLEMENTED
+            displayTable(column, data, "Games");
         } else if (comboBox.getSelectedIndex() == 9) {
             competes_in[] table = delegate.showCompetesIn();
-            //Stub output to double-check functionality
-            for (competes_in i: table) {
-                System.out.println("Team: "+i.getTeamID());
-                System.out.println("Competes in Game: "+i.getGameID()+"\n");
+            String column[] = {"Game ID", "Team ID"};
+            Object data[][] = new Object[table.length][2];
+            for (int i = 0; i < table.length; i++) {
+                data[i][0] = table[i].getGameID();
+                data[i][1] = table[i].getTeamID();
             }
-            // Scroll-Down Table Display - TO BE IMPLEMENTED
+            displayTable(column, data, "Competes In");
         } else if (comboBox.getSelectedIndex() == 10) {
             venue[] table = delegate.showVenues();
-            //Stub output to double-check functionality
-            for (venue i: table) {
-                System.out.println("Player "+i.getId()+":");
-                System.out.println("Unique Description is: "+i.getAddress()+"\n");
+            String column[] = {"Venue ID", "Address", "Rooms", "Seats", "Rinks"};
+            Object data[][] = new Object[table.length][5];
+            for (int i = 0; i < table.length; i++) {
+                data[i][0] = table[i].getId();
+                data[i][1] = table[i].getAddress();
+                data[i][2] = table[i].getNumRooms();
+                data[i][3] = table[i].getNumSeats();
+                data[i][4] = table[i].getNumRinks();
             }
-            // Scroll-Down Table Display - TO BE IMPLEMENTED
+            displayTable(column, data, "Venues");
         } else if (comboBox.getSelectedIndex() == 11) {
             referee[] table = delegate.showReferees();
-            //Stub output to double-check functionality
-            for (referee i: table) {
-                System.out.println("Player "+i.getRefID()+":");
-                System.out.println("Unique Description is: "+i.getName()+"\n");
+            String column[] = {"Referee ID", "Name"};
+            Object data[][] = new Object[table.length][2];
+            for (int i = 0; i < table.length; i++) {
+                data[i][0] = table[i].getRefID();
+                data[i][1] = table[i].getName();
             }
-            // Scroll-Down Table Display - TO BE IMPLEMENTED
+            displayTable(column, data, "Referees");
         } else if (comboBox.getSelectedIndex() == 12) {
             regulate_game_at[] table = delegate.showRegulateGameAt();
-            //Stub output to double-check functionality
-            for (regulate_game_at i: table) {
-                System.out.println("Referee "+i.getRefID()+
-                        " refs for Game "+i.getGameID()+
-                        " at "+i.getVenueID()+
-                        " at "+i.getDate()+
-                        "\n");
+            String column[] = {"Venue ID", "Referee ID", "Game ID", "Date"};
+            Object data[][] = new Object[table.length][4];
+            for (int i = 0; i < table.length; i++) {
+                data[i][0] = table[i].getVenueID();
+                data[i][1] = table[i].getRefID();
+                data[i][2] = table[i].getGameID();
+                data[i][3] = table[i].getDate();
             }
-            // Scroll-Down Table Display - TO BE IMPLEMENTED
+            displayTable(column, data, "Regulates Game At");
         }
+    }
+
+    private void displayTable(String[] column, Object[][] data, String tableName) {
+        DefaultTableModel model = new DefaultTableModel(data, column);
+        JTable table = new JTable(model);
+        table.setShowGrid(true);
+        table.setShowVerticalLines(true);
+        JScrollPane pane = new JScrollPane(table);
+        JFrame f = new JFrame(tableName);
+        JPanel panel = new JPanel();
+        panel.add(pane);
+        f.add(panel);
+        f.setSize(500, 250);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
     }
 }

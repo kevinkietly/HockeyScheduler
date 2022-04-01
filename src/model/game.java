@@ -15,11 +15,11 @@ public class game {
         return game_id;
     }
 
-    public int getTeam1ID() {
+    public int getTeam1Score() {
         return team1_score;
     }
 
-    public int getTeam2ID() {
+    public int getTeam2Score() {
         return team2_id;
     }
 
