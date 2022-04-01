@@ -112,14 +112,18 @@ INSERT INTO venue VALUES(3, '3676 Kensington Ave, Burnaby, BC V5B 4Z6', 10, 8983
 INSERT INTO game VALUES(1, 5, 3);
 INSERT INTO game VALUES(2, 1, 2);
 INSERT INTO game VALUES(3, 0, 10);
+INSERT INTO game VALUES(4, 2, 13);
 
 INSERT INTO organization VALUES(1, 'Vancouver ORG', 'Vancouver');
 
 INSERT INTO referee VALUES(1, 'Zebra');
+INSERT INTO referee VALUES(2, 'Tom');
+INSERT INTO referee VALUES(3, 'Luke');
 
-INSERT INTO regulates_game_at VALUES(1, 1, 1, 'March 25, 2022');
-INSERT INTO regulates_game_at VALUES(2, 1, 2, 'March 30, 2022');
+INSERT INTO regulates_game_at VALUES(1, 3, 1, 'March 25, 2022');
+INSERT INTO regulates_game_at VALUES(2, 2, 2, 'March 30, 2022');
 INSERT INTO regulates_game_at VALUES(3, 1, 3, 'March 14, 2022');
+INSERT INTO regulates_game_at VALUES(4, 2, 3, 'March 14, 2022');
 
 INSERT INTO team VALUES(1, 'Bulldogs', 1);
 INSERT INTO team VALUES(2, 'Canucks', 1);
@@ -134,6 +138,9 @@ INSERT INTO competes_in VALUES(3, 2);
 /*Game 3*/
 INSERT INTO competes_in VALUES(1, 3);
 INSERT INTO competes_in VALUES(3, 3);
+/*Game 3*/
+INSERT INTO competes_in VALUES(1, 4);
+INSERT INTO competes_in VALUES(2, 4);
 
 INSERT INTO coach VALUES(1, 'Richard', 1);
 INSERT INTO coach VALUES(2, 'John', 2);
