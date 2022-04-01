@@ -178,7 +178,7 @@ public class DatabaseConnectionHandler {
     public venue[] selectSpaciousVenues(int minRooms) {
         ArrayList<venue> result = new ArrayList<>();
         try {
-            String query = "SELECT * FROM venue WHERE rooms <= ?";
+            String query = "SELECT * FROM venue WHERE rooms >= ?";
             PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
             ps.setInt(1, minRooms);
             ResultSet rs = ps.executeQuery();
@@ -199,16 +199,17 @@ public class DatabaseConnectionHandler {
         return result.toArray(new venue[result.size()]);
     }
 
-    public String[] getTeamNames() {
+    public String[] getTeamProjection(String column) {
 
         ArrayList<String> result = new ArrayList<>();
         try {
-            String query = "SELECT name FROM team";
+            String query = "SELECT ? FROM team";
             PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
+            ps.setString(1, column);
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()) {
-                result.add(rs.getString("name"));
+                result.add(column);
             }
             rs.close();
             ps.close();
@@ -260,11 +261,13 @@ public class DatabaseConnectionHandler {
     public int maxSeats() {
         int max = -1;
         try {
-            String query = "SELECT MAX(seats) FROM venue V";
+            String query = "SELECT MAX(seats) AS maxSeats FROM venue";
             PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
             ResultSet rs = ps.executeQuery();
 
-            max = rs.getInt("seats");
+            while(rs.next()) {
+                max = rs.getInt("maxSeats");
+            }
 
             rs.close();
             ps.close();

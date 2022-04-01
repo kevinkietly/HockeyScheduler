@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="IU-213.6777.52">
+  <component name="dataSourceStorageLocal" created-in="IU-213.7172.25">
     <data-source name="Project 304" uuid="58991b6b-563f-44c2-9363-3979c17481d7">
       <database-info product="Oracle" version="Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production&#10;Version 19.3.0.0.0" jdbc-version="4.2" driver-name="Oracle JDBC driver" driver-version="21.1.0.0.0" dbms="ORACLE" exact-version="19.0.0.0.0" exact-driver-version="21.1">
         <extra-name-characters>$#</extra-name-characters>
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
-      <user-name>ora_manguoo</user-name>
+      <secret-storage>master_key</secret-storage>
+      <user-name>ora_kevinly</user-name>
       <schema-mapping>
         <introspection-scope>
           <node kind="schema">
@@ -19,7 +20,7 @@
       <introspection-level>3</introspection-level>
       <ssh-properties>
         <enabled>true</enabled>
-        <ssh-config-id>49a38f31-54a4-4fca-b6c6-3a049d378c10</ssh-config-id>
+        <ssh-config-id>47e99b9e-a02e-479c-8977-87dbe6a707c7</ssh-config-id>
       </ssh-properties>
     </data-source>
   </component>

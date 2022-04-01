@@ -76,9 +76,9 @@ public class HockeyScheduler implements LoginWindowDelegate, MainWindowDelegate 
     }
 
     @Override
-    public void selectSpaciousVenues(int minRooms) {
+    public venue[] selectSpaciousVenues(int minRooms) {
         venue[] spaciousVenues = dbHandler.selectSpaciousVenues(minRooms);
-        //Link up with GUI implementation
+        return spaciousVenues;
     }
 
     @Override
@@ -92,9 +92,8 @@ public class HockeyScheduler implements LoginWindowDelegate, MainWindowDelegate 
     }
 
     @Override
-    public void getTeamNames() {
-        String[] names = dbHandler.getTeamNames();
-        //Link up with GUI implementation
+    public void getTeamProjection(String column) {
+        String[] names = dbHandler.getTeamProjection(column);
     }
 
     @Override
@@ -103,9 +102,9 @@ public class HockeyScheduler implements LoginWindowDelegate, MainWindowDelegate 
     }
 
     @Override
-    public void maxSeats() {
+    public int maxSeats() {
         int max = dbHandler.maxSeats();
-        //Link up eiyh GUI implementation
+        return max;
     }
 
     @Override
