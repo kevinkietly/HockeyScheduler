@@ -42,18 +42,18 @@ public class NAWGBPanel extends JPanel {
         HashMap<Integer,Integer> result = delegate.maxSeatsPerRef();
         String column[] = {"Referee ID", "Max Seats"};
         Object data[][] = new Object[result.size()][2];
-        for (int i = 0; i < result.size(); i++) {
-            for (Integer j : result.keySet()) {
-                data[i][0] = j;
-                data[i][1] = result.get(j);
-            }
+        int k = 0;
+        for (Integer j : result.keySet()) {
+            data[k][0] = j;
+            data[k][1] = result.get(j);
+            k++;
         }
         DefaultTableModel model = new DefaultTableModel(data, column);
         JTable table = new JTable(model);
         table.setShowGrid(true);
         table.setShowVerticalLines(true);
         JScrollPane pane = new JScrollPane(table);
-        JFrame f = new JFrame("Join");
+        JFrame f = new JFrame("Nested Aggregation with Group By");
         JPanel panel = new JPanel();
         panel.add(pane);
         f.add(panel);
