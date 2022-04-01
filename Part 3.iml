@@ -16,7 +16,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../flatlaf-1.1.jar!/" />
+          <root url="jar://C:/Program Files/Java/flatlaf-1.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -25,7 +25,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../flatlaf-intellij-themes-1.1.jar!/" />
+          <root url="jar://C:/Program Files/Java/flatlaf-intellij-themes-1.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -34,7 +34,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../LGoodDatePicker-11.2.1.jar!/" />
+          <root url="jar://C:/Program Files/Java/LGoodDatePicker-11.2.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -43,7 +43,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../mybatis-3.5.9.jar!/" />
+          <root url="jar://C:/Program Files/Java/mybatis-3.5.9.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
