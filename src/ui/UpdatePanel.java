@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class updatePanel extends JPanel {
+public class UpdatePanel extends JPanel {
     private static final Insets STANDARD_INSET = new Insets(10, 40, 0, 40);
 
     private JTextField playerIDField;
@@ -16,7 +16,7 @@ public class updatePanel extends JPanel {
 
     private MainWindowDelegate delegate;
 
-    public updatePanel(MainWindowDelegate delegate) {
+    public UpdatePanel(MainWindowDelegate delegate) {
         this.delegate = delegate;
         setLayout(new GridBagLayout());
         playerIDField = new JTextField(20);
