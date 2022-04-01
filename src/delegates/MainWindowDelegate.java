@@ -16,7 +16,7 @@ public interface MainWindowDelegate {
     public HashMap<Integer, Integer> maxSeatsPerRef(int ref_id);
     public venue[] selectSpaciousVenues(int minRooms);
     public void getTeamProjection(String column);
-    public void allGameParticipants();
+    public String[] allGameParticipants();
     public int maxSeats();
     public void showCoaches();
     public void showCoachSince();

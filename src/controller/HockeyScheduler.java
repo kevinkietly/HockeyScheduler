@@ -97,8 +97,8 @@ public class HockeyScheduler implements LoginWindowDelegate, MainWindowDelegate 
     }
 
     @Override
-    public void allGameParticipants() {
-        dbHandler.allGameParticipants();
+    public String[] allGameParticipants() {
+        return dbHandler.allGameParticipants();
     }
 
     @Override

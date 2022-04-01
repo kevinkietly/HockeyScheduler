@@ -43,7 +43,7 @@ public class MainWindow extends JFrame {
         sidebarTabbedPane.addTab("Join", new JoinPanel(delegate));
         sidebarTabbedPane.addTab("Aggregation", new aggPanel(delegate));
         sidebarTabbedPane.addTab("Nested Aggregation with Group By", new NAWGBPanel(delegate));
-        sidebarTabbedPane.addTab("Division", null);
+        sidebarTabbedPane.addTab("Division", new DivisionPanel(delegate));
         sidebarTabbedPane.addTab("View", null);
     }
 }
