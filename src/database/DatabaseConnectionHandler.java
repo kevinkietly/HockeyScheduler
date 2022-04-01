@@ -261,11 +261,13 @@ public class DatabaseConnectionHandler {
     public int maxSeats() {
         int max = -1;
         try {
-            String query = "SELECT MAX(seats) FROM venue V";
+            String query = "SELECT MAX(seats) AS minSeats FROM venue";
             PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
             ResultSet rs = ps.executeQuery();
 
-            max = rs.getInt("seats");
+            while(rs.next()) {
+                max = rs.getInt("minSeats");
+            }
 
             rs.close();
             ps.close();
