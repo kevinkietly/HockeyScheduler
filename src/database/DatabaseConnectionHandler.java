@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DatabaseConnectionHandler {
     private static final String EXCEPTION_TAG = "[EXCEPTION]";
@@ -168,8 +169,6 @@ public class DatabaseConnectionHandler {
     }
 
     public String[] getTeamNames() {
-        // For Projection: also implement in this function? Or make another function?
-        // Answer: NO becuase we'll just have one field filled and all other null\
 
         ArrayList<String> result = new ArrayList<>();
         try {
@@ -189,7 +188,24 @@ public class DatabaseConnectionHandler {
     }
 
     // For join, do we wanna abstract smth into a new, temporary class?
-    // I think we might need to do this for selection/projection as well
+    public String[] goaliesUnderCoachName(String name) {
+        ArrayList<String> result = new ArrayList<>();
+        try {
+            String query = "SELECT G.name FROM goalie G, coach C WHERE G.team_id = C.team_id AND C.name = ?";
+            PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                result.add(rs.getString("name"));
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+        }
+        return result.toArray(new String[result.size()]);
+    }
 
     public void allGameParticipants() {
         ArrayList<String> ret = new ArrayList<>();
@@ -227,6 +243,27 @@ public class DatabaseConnectionHandler {
         return max;
     }
 
+    public HashMap<Integer,Integer> maxSeatsPerRef(int ref_id) {
+        HashMap<Integer,Integer> ref_seats = new HashMap<Integer, Integer>();
+        try {
+            String query = "SELECT ref_id, MAX(V.seats) FROM venue V, regulates_game_at R WHERE V.venue_id = R.venue_id GROUP BY R.ref_id";
+            PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                Integer id = rs.getInt("ref_id");
+                Integer seats = rs.getInt("seats");
+                ref_seats.put(id,seats);
+            }
+
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+        }
+        return ref_seats;
+    }
+
     public coach[] getCoachInfo() {
         ArrayList<coach> result = new ArrayList<>();
         try {
@@ -249,8 +286,6 @@ public class DatabaseConnectionHandler {
     }
 
     public coach_since[] getCoachSinceInfo() {
-        // For Selection: also implement in this function? Or make another function?
-        // Answer: NO becuase we'll just have one field filled and all other null
 
         ArrayList<coach_since> result = new ArrayList<>();
         try {
