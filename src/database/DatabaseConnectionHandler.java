@@ -239,7 +239,7 @@ public class DatabaseConnectionHandler {
         return result.toArray(new String[result.size()]);
     }
 
-    public void allGameParticipants() {
+    public String[] allGameParticipants() {
         ArrayList<String> ret = new ArrayList<>();
         try {
             String query = "SELECT T.team_id FROM team T WHERE NOT EXISTS(SELECT G.game_id FROM game G WHERE NOT EXISTS(SELECT C.game_id FROM competes_in C WHERE C.game_id=G.game_id AND C.team_id = T.team_id))";
@@ -256,6 +256,7 @@ public class DatabaseConnectionHandler {
         } catch (SQLException e) {
             System.out.println(EXCEPTION_TAG + " " + e.getMessage());
         }
+        return ret.toArray(new String[ret.size()]);
     }
 
     public int maxSeats() {
