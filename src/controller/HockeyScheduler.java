@@ -86,9 +86,8 @@ public class HockeyScheduler implements LoginWindowDelegate, MainWindowDelegate 
     }
 
     @Override
-    public void getTeamNames() {
-        String[] names = dbHandler.getTeamNames();
-        //Link up with GUI implementation
+    public void getTeamProjection(String column) {
+        String[] names = dbHandler.getTeamProjection(column);
     }
 
     @Override
