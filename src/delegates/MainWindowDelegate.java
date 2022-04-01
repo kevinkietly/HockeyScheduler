@@ -1,5 +1,8 @@
 package delegates;
+
 import model.*;
+
+import java.util.HashMap;
 
 public interface MainWindowDelegate {
     public void insertPlayer(goalie p);
@@ -10,6 +13,7 @@ public interface MainWindowDelegate {
     public void updatePlayerName(defense p,String name);
     public void updatePlayerName(forward p, String name);
     public String[] goaliesUnderCoachName(String name);
+    public HashMap<Integer, Integer> maxSeatsPerRef(int ref_id);
     public venue[] selectSpaciousVenues(int minRooms);
     public void getTeamProjection(String column);
     public void allGameParticipants();
@@ -26,4 +30,5 @@ public interface MainWindowDelegate {
     public void showRegulateGameAt();
     public void showTeams();
     public void showVenues();
+
 }

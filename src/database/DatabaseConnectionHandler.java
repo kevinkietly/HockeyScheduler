@@ -286,7 +286,7 @@ public class DatabaseConnectionHandler {
 
             while(rs.next()) {
                 Integer id = rs.getInt("ref_id");
-                Integer seats = rs.getInt("seats");
+                Integer seats = rs.getInt("maxSeats");
                 ref_seats.put(id,seats);
             }
 
