@@ -10,6 +10,7 @@ public interface MainWindowDelegate {
     public void updatePlayerName(defense p,String name);
     public void updatePlayerName(forward p, String name);
     public void selectSpaciousVenues(int minRooms);
+    public String[] goaliesUnderCoachName(String name);
     public void getTeamNames();
     public void allGameParticipants();
     public void maxSeats();
