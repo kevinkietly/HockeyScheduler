@@ -66,7 +66,7 @@ public class DatabaseConnectionHandler {
 
     // insert a Forward, given a Forward p
     // (Called from GUI)
-    public void insertPlayer(Forward p) {
+    public void insertPlayer(forward p) {
         try {
             String query = "INSERT INTO forward VALUES (?,?,?,?,?)";
             insertPlayer(query, p);
@@ -92,23 +92,48 @@ public class DatabaseConnectionHandler {
     }
 
     public void deleteTeam(int team_id) {
-		try {
-			String query = "DELETE FROM team WHERE team_id = ?";
-			PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
-			ps.setInt(1, team_id);
-
-			int rowCount = ps.executeUpdate();
-			if (rowCount == 0) {
-				System.out.println(WARNING_TAG + " Team " + team_id + " does not exist!");
-			}
-
-			connection.commit();
-			ps.close();
-		} catch (SQLException e) {
-			System.out.println(EXCEPTION_TAG + " " + e.getMessage());
-			rollbackConnection();
-		}
-	}
+        try {
+            String query1 = "DELETE FROM competes_in WHERE team_id = ?";
+            String query2 = "DELETE FROM coach WHERE team_id = ?";
+            String query3 = "DELETE FROM coach_since WHERE team_id = ?";
+            String query4 = "DELETE FROM goalie WHERE team_id = ?";
+            String query5 = "DELETE FROM forward WHERE team_id = ?";
+            String query6 = "DELETE FROM defense WHERE team_id = ?";
+            String query7 = "DELETE FROM team WHERE team_id = ?";
+            PrintablePreparedStatement ps1 = new PrintablePreparedStatement(connection.prepareStatement(query1), query1, false);
+            PrintablePreparedStatement ps2 = new PrintablePreparedStatement(connection.prepareStatement(query2), query2, false);
+            PrintablePreparedStatement ps3 = new PrintablePreparedStatement(connection.prepareStatement(query3), query3, false);
+            PrintablePreparedStatement ps4 = new PrintablePreparedStatement(connection.prepareStatement(query4), query4, false);
+            PrintablePreparedStatement ps5 = new PrintablePreparedStatement(connection.prepareStatement(query5), query5, false);
+            PrintablePreparedStatement ps6 = new PrintablePreparedStatement(connection.prepareStatement(query6), query6, false);
+            PrintablePreparedStatement ps7 = new PrintablePreparedStatement(connection.prepareStatement(query7), query7, false);
+            ps1.setInt(1, 1);
+            ps2.setInt(1, 1);
+            ps3.setInt(1, 1);
+            ps4.setInt(1, 1);
+            ps5.setInt(1, 1);
+            ps6.setInt(1, 1);
+            ps7.setInt(1, 1);
+            ps1.executeUpdate();
+            ps2.executeUpdate();
+            ps3.executeUpdate();
+            ps4.executeUpdate();
+            ps5.executeUpdate();
+            ps6.executeUpdate();
+            ps7.executeUpdate();
+            connection.commit();
+            ps1.close();
+            ps2.close();
+            ps3.close();
+            ps4.close();
+            ps5.close();
+            ps6.close();
+            ps7.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+            rollbackConnection();
+        }
+    }
 
     public void updatePlayerName(defense p, String name) {
         updatePlayerName(p, name, "defense");
@@ -118,17 +143,23 @@ public class DatabaseConnectionHandler {
         updatePlayerName(p, name, "goalie");
     }
 
-    public void updatePlayerName(Forward p, String name) {
+    public void updatePlayerName(forward p, String name) {
         updatePlayerName(p, name, "forward");
     }
 
     private void updatePlayerName(player p, String name,String ptype) {
         try {
-            String query = "UPDATE ? SET name = ? WHERE player_id = ?";
+            String query = "";
+            if(ptype.equals("goalie")) {
+                query = "UPDATE goalie SET name = ? WHERE player_id = ?";
+            } else if (ptype.equals("forward")) {
+                query = "UPDATE forward SET name = ? WHERE player_id = ?";
+            } else {
+                query = "UPDATE defense SET name = ? WHERE player_id = ?";
+            }
             PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
-            ps.setString(1, ptype);
-            ps.setString(2, name);
-            ps.setInt(3, p.getPlayerID());
+            ps.setString(1, name);
+            ps.setInt(2, p.getPlayerID());
 
             int rowCount = ps.executeUpdate();
             if (rowCount == 0) {
@@ -329,15 +360,15 @@ public class DatabaseConnectionHandler {
         return result.toArray(new defense[result.size()]);
     }
 
-    public Forward[] getForwardInfo() {
-        ArrayList<Forward> result = new ArrayList<>();
+    public forward[] getForwardInfo() {
+        ArrayList<forward> result = new ArrayList<>();
         try {
             String query = "SELECT * FROM forward";
             PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()) {
-                Forward forward = new Forward(rs.getInt("player_id"),
+                forward forward = new forward(rs.getInt("player_id"),
                         rs.getString("name"),
                         rs.getInt("num"),
                         rs.getString("plays_in_since"),
@@ -349,7 +380,7 @@ public class DatabaseConnectionHandler {
         } catch (SQLException e) {
             System.out.println(EXCEPTION_TAG + " " + e.getMessage());
         }
-        return result.toArray(new Forward[result.size()]);
+        return result.toArray(new forward[result.size()]);
     }
 
     public game[] getGameInfo() {

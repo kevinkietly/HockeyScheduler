@@ -1,13 +1,14 @@
 package delegates;
 import model.*;
+
 public interface MainWindowDelegate {
     public void insertPlayer(goalie p);
     public void insertPlayer(defense p);
-    public void insertPlayer(Forward p);
+    public void insertPlayer(forward p);
     public void deleteTeam(int team_id);
     public void updatePlayerName(goalie p,String name);
     public void updatePlayerName(defense p,String name);
-    public void updatePlayerName(Forward p,String name);
+    public void updatePlayerName(forward p, String name);
     public void selectSpaciousVenues(int minRooms);
     public void getTeamNames();
     public void allGameParticipants();

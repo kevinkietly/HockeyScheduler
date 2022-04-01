@@ -50,7 +50,7 @@ public class HockeyScheduler implements LoginWindowDelegate, MainWindowDelegate 
     }
 
     @Override
-    public void insertPlayer(Forward p) {
+    public void insertPlayer(forward p) {
         dbHandler.insertPlayer(p);
     }
 
@@ -70,7 +70,7 @@ public class HockeyScheduler implements LoginWindowDelegate, MainWindowDelegate 
     }
 
     @Override
-    public void updatePlayerName(Forward p,String name) {
+    public void updatePlayerName(forward p, String name) {
         dbHandler.updatePlayerName(p,name);
     }
 
@@ -116,7 +116,7 @@ public class HockeyScheduler implements LoginWindowDelegate, MainWindowDelegate 
 
     @Override
     public void showForwards() {
-        Forward[] forwards = dbHandler.getForwardInfo();
+        forward[] forwards = dbHandler.getForwardInfo();
         // Link up with GUI implementation
     }
 

@@ -15,10 +15,10 @@ CREATE TABLE game (
 );
 
 CREATE TABLE organization (
-      org_id int NOT NULL,
-      name varchar2(100),
-      city varchar2(100),
-      PRIMARY KEY (org_id)
+    org_id int NOT NULL,
+    name varchar2(100),
+    city varchar2(100),
+    PRIMARY KEY (org_id)
 );
 
 CREATE TABLE referee (
@@ -61,6 +61,7 @@ CREATE TABLE coach (
 	team_id int NOT NULL,
 	PRIMARY KEY (coach_id),
 	FOREIGN KEY (team_id) REFERENCES team
+    ON DELETE CASCADE
 );
 
 CREATE TABLE coach_since (
@@ -68,6 +69,7 @@ CREATE TABLE coach_since (
 	team_id int NOT NULL,
 	PRIMARY KEY (team_id),
 	FOREIGN KEY (team_id) REFERENCES team
+    ON DELETE CASCADE
 );
 
 CREATE TABLE goalie (
@@ -78,6 +80,7 @@ CREATE TABLE goalie (
 	team_id int NOT NULL,
 	PRIMARY KEY (player_id),
 	FOREIGN KEY (team_id) REFERENCES team
+    ON DELETE CASCADE
 );
 
 CREATE TABLE forward (
@@ -88,6 +91,7 @@ CREATE TABLE forward (
 	team_id int NOT NULL,
 	PRIMARY KEY (player_id),
 	FOREIGN KEY (team_id) REFERENCES team
+    ON DELETE CASCADE
 );
 
 CREATE TABLE defense (
@@ -98,6 +102,7 @@ CREATE TABLE defense (
 	team_id int NOT NULL,
 	PRIMARY KEY (player_id),
 	FOREIGN KEY (team_id) REFERENCES team
+    ON DELETE CASCADE
 );
 
 INSERT INTO venue VALUES(1, '800 Griffiths Way, Vancouver, BC V6B 6G1', 10, 18910, 1);
@@ -123,7 +128,7 @@ INSERT INTO coach_since VALUES('March 20, 2022', 1);
 INSERT INTO coach_since VALUES('March 21, 2022', 2);
 
 INSERT INTO goalie VALUES(1, 'Mark', 1, 'March 20, 2022', 1);
-INSERT INTO goalie VALUES(7, 'Mark', 1, 'March 20, 2022', 2);
+INSERT INTO goalie VALUES(7, 'Marc', 1, 'March 20, 2022', 2);
 
 
 INSERT INTO forward VALUES(2, 'Mark', 2, 'March 20, 2022', 1);

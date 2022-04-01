@@ -1,7 +1,7 @@
 package ui;
 
 import delegates.MainWindowDelegate;
-import model.Forward;
+import model.forward;
 
 import javax.swing.*;
 import java.awt.*;
@@ -90,7 +90,12 @@ public class InsertPanel extends JPanel {
         int number = Integer.parseInt(playerNumField.getText());
         String plays_in_since = playsInSinceField.getText();
         int team_id = Integer.parseInt(teamIDField.getText());
-        Forward player = new Forward(player_id, name, number, plays_in_since, team_id);
+        forward player = new forward(player_id, name, number, plays_in_since, team_id);
         delegate.insertPlayer(player);
+        playerIDField.setText(null);
+        playerNameField.setText(null);
+        playerNumField.setText(null);
+        playsInSinceField.setText(null);
+        teamIDField.setText(null);
     }
 }

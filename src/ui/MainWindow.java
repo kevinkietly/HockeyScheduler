@@ -7,11 +7,11 @@ import javax.swing.*;
 public class MainWindow extends JFrame {
     private JPanel mainPanel;
     private JTabbedPane sidebarTabbedPane;
-    private MainWindowDelegate mainWindowDelegate;
+    private MainWindowDelegate delegate;
 
     public MainWindow(MainWindowDelegate mainWindowDelegate) {
         super("Hockey Scheduler");
-        this.mainWindowDelegate = mainWindowDelegate;
+        this.delegate = mainWindowDelegate;
         initializeMainPanel();
         initializeSidebarTabbedPane();
         mainPanel.add(sidebarTabbedPane);
@@ -34,9 +34,10 @@ public class MainWindow extends JFrame {
     }
 
     private void initializeSidebarTabs() {
-        sidebarTabbedPane.addTab("Insert", new InsertPanel(mainWindowDelegate));
-        sidebarTabbedPane.addTab("Delete", null);
-        sidebarTabbedPane.addTab("Update", null);
+
+        sidebarTabbedPane.addTab("Insert", new InsertPanel(delegate));
+        sidebarTabbedPane.addTab("Delete", new DeletePanel(delegate));
+        sidebarTabbedPane.addTab("Update", new updatePanel(delegate));
         sidebarTabbedPane.addTab("Selection", null);
         sidebarTabbedPane.addTab("Projection", null);
         sidebarTabbedPane.addTab("Join", null);
