@@ -34,4 +34,7 @@ public class organization {
     public void setCity(String city) {
         this.city = city;
     }
+
+    public static class competes_in {
+    }
 }

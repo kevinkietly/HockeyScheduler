@@ -7,12 +7,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class aggPanel extends JPanel {
+public class AggPanel extends JPanel {
     private static final Insets STANDARD_INSET = new Insets(10, 40, 0, 40);
 
     private MainWindowDelegate delegate;
 
-    public aggPanel(MainWindowDelegate delegate) {
+    public AggPanel(MainWindowDelegate delegate) {
         this.delegate = delegate;
         setLayout(new GridBagLayout());
         JButton updateButton = new JButton("Maximum Seats");
