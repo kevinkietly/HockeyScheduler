@@ -13,7 +13,7 @@ public interface MainWindowDelegate {
     public venue[] selectSpaciousVenues(int minRooms);
     public void getTeamProjection(String column);
     public void allGameParticipants();
-    public void maxSeats();
+    public int maxSeats();
     public void showCoaches();
     public void showCoachSince();
     public void showDefenses();

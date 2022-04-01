@@ -96,9 +96,9 @@ public class HockeyScheduler implements LoginWindowDelegate, MainWindowDelegate 
     }
 
     @Override
-    public void maxSeats() {
+    public int maxSeats() {
         int max = dbHandler.maxSeats();
-        //Link up eiyh GUI implementation
+        return max;
     }
 
     @Override
