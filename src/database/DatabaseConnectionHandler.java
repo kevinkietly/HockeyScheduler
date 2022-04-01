@@ -252,7 +252,7 @@ public class DatabaseConnectionHandler {
         return result.toArray(new String[result.size()]);
     }
 
-    public void allGameParticipants() {
+    public String[] allGameParticipants() {
         ArrayList<String> ret = new ArrayList<>();
         try {
             String query = "SELECT T.team_id FROM team T WHERE NOT EXISTS(SELECT G.game_id FROM game G WHERE NOT EXISTS(SELECT C.game_id FROM competes_in C WHERE C.game_id=G.game_id AND C.team_id = T.team_id))";
@@ -269,16 +269,19 @@ public class DatabaseConnectionHandler {
         } catch (SQLException e) {
             System.out.println(EXCEPTION_TAG + " " + e.getMessage());
         }
+        return ret.toArray(new String[ret.size()]);
     }
 
     public int maxSeats() {
         int max = -1;
         try {
-            String query = "SELECT MAX(seats) FROM venue V";
+            String query = "SELECT MAX(seats) AS maxSeats FROM venue";
             PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
             ResultSet rs = ps.executeQuery();
 
-            max = rs.getInt("seats");
+            while(rs.next()) {
+                max = rs.getInt("maxSeats");
+            }
 
             rs.close();
             ps.close();
@@ -291,13 +294,13 @@ public class DatabaseConnectionHandler {
     public HashMap<Integer,Integer> maxSeatsPerRef(int ref_id) {
         HashMap<Integer,Integer> ref_seats = new HashMap<Integer, Integer>();
         try {
-            String query = "SELECT ref_id, MAX(V.seats) FROM venue V, regulates_game_at R WHERE V.venue_id = R.venue_id GROUP BY R.ref_id";
+            String query = "SELECT ref_id, MAX(V.seats) AS maxSeats FROM venue V, regulates_game_at R WHERE V.venue_id = R.venue_id GROUP BY R.ref_id";
             PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()) {
                 Integer id = rs.getInt("ref_id");
-                Integer seats = rs.getInt("seats");
+                Integer seats = rs.getInt("maxSeats");
                 ref_seats.put(id,seats);
             }
 

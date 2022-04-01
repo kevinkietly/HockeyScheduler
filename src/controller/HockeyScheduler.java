@@ -10,6 +10,7 @@ import ui.MainWindow;
 
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 public class HockeyScheduler implements LoginWindowDelegate, MainWindowDelegate {
     private DatabaseConnectionHandler dbHandler;
@@ -86,20 +87,24 @@ public class HockeyScheduler implements LoginWindowDelegate, MainWindowDelegate 
     }
 
     @Override
-    public Object[] getTeamProjection(String column) {
-        Object[] data = dbHandler.getTeamProjection(column);
-        return data;
+    public HashMap<Integer, Integer> maxSeatsPerRef(int ref_id) {
+        return dbHandler.maxSeatsPerRef(ref_id);
     }
 
     @Override
-    public void allGameParticipants() {
-        dbHandler.allGameParticipants();
+    public void getTeamProjection(String column) {
+        String[] names = dbHandler.getTeamProjection(column);
     }
 
     @Override
-    public void maxSeats() {
+    public String[] allGameParticipants() {
+        return dbHandler.allGameParticipants();
+    }
+
+    @Override
+    public int maxSeats() {
         int max = dbHandler.maxSeats();
-        //Link up eiyh GUI implementation
+        return max;
     }
 
     @Override
