@@ -342,8 +342,8 @@ public class DatabaseConnectionHandler {
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()) {
-                coach_since coachsince = new coach_since(rs.getString("coach_id"),
-                        rs.getInt("name"));
+                coach_since coachsince = new coach_since(rs.getString("coach_since"),
+                        rs.getInt("team_id"));
                 result.add(coachsince);
             }
             rs.close();
@@ -352,6 +352,27 @@ public class DatabaseConnectionHandler {
             System.out.println(EXCEPTION_TAG + " " + e.getMessage());
         }
         return result.toArray(new coach_since[result.size()]);
+    }
+
+    public competes_in[] getCompetesIn() {
+
+        ArrayList<competes_in> result = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM competes_in";
+            PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                competes_in competesIn = new competes_in(rs.getInt("team_id"),
+                        rs.getInt("game_id"));
+                result.add(competesIn);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            System.out.println(EXCEPTION_TAG + " " + e.getMessage());
+        }
+        return result.toArray(new competes_in[result.size()]);
     }
 
     public defense[] getDefenseInfo() {

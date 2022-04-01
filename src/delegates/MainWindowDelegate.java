@@ -18,17 +18,18 @@ public interface MainWindowDelegate {
     public Object[] getTeamProjection(String column);
     public String[] allGameParticipants();
     public int maxSeats();
-    public void showCoaches();
-    public void showCoachSince();
-    public void showDefenses();
-    public void showForwards();
-    public void showGames();
-    public void showGoalies();
-    public void showOrganizations();
-    public void showPlayers();
-    public void showReferees();
-    public void showRegulateGameAt();
-    public void showTeams();
-    public void showVenues();
+    public coach[] showCoaches();
+    public coach_since[] showCoachSince();
+    public competes_in[] showCompetesIn();
+    public defense[] showDefenses();
+    public forward[] showForwards();
+    public game[] showGames();
+    public goalie[] showGoalies();
+    public organization[] showOrganizations();
+    public player[] showPlayers();
+    public referee[] showReferees();
+    public regulate_game_at[] showRegulateGameAt();
+    public team[] showTeams();
+    public venue[] showVenues();
 
 }

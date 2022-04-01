@@ -108,73 +108,80 @@ public class HockeyScheduler implements LoginWindowDelegate, MainWindowDelegate 
     }
 
     @Override
-    public void showCoaches() {
-        dbHandler.getCoachInfo();
-    }
-
-    @Override
-    public void showCoachSince() {
+    public coach[] showCoaches() {
         coach[] coaches = dbHandler.getCoachInfo();
-        // Link up with GUI implementation
+        return coaches;
     }
 
     @Override
-    public void showDefenses() {
+    public coach_since[] showCoachSince() {
+        coach_since[] coachsince = dbHandler.getCoachSinceInfo();
+        return coachsince;
+    }
+
+    @Override
+    public competes_in[] showCompetesIn() {
+        competes_in[] competesIns = dbHandler.getCompetesIn();
+        return competesIns;
+    }
+
+    @Override
+    public defense[] showDefenses() {
         defense[] defenses = dbHandler.getDefenseInfo();
-        // Link up with GUI implementation
+        return defenses;
     }
 
     @Override
-    public void showForwards() {
+    public forward[] showForwards() {
         forward[] forwards = dbHandler.getForwardInfo();
-        // Link up with GUI implementation
+        return forwards;
     }
 
     @Override
-    public void showGames() {
+    public game[] showGames() {
         game[] games = dbHandler.getGameInfo();
-        // Link up with GUI implementation
+        return games;
     }
 
     @Override
-    public void showGoalies() {
+    public goalie[] showGoalies() {
         goalie[] goalies = dbHandler.getGoalieInfo();
-        // Link up with GUI implementation
+        return goalies;
     }
 
     @Override
-    public void showOrganizations() {
+    public organization[] showOrganizations() {
         organization[] orgs = dbHandler.getOrganizationInfo();
-        // Link up with GUI implementation
+        return orgs;
     }
 
     @Override
-    public void showPlayers() {
+    public player[] showPlayers() {
         player[] players = dbHandler.getPlayerInfo();
-        // Link up with GUI implementation
+        return players;
     }
 
     @Override
-    public void showReferees() {
+    public referee[] showReferees() {
         referee[] referees = dbHandler.getRefereeInfo();
-        // Link up with GUI implementation
+        return referees;
     }
 
     @Override
-    public void showRegulateGameAt() {
+    public regulate_game_at[] showRegulateGameAt() {
         regulate_game_at[] rgas = dbHandler.getRegGameAtInfo();
-        // Link up with GUI implementation
+        return rgas;
     }
 
     @Override
-    public void showTeams() {
+    public team[] showTeams() {
         team[] teams = dbHandler.getTeamInfo();
-        // Link up with GUI implementation
+        return teams;
     }
 
     @Override
-    public void showVenues() {
+    public venue[] showVenues() {
         venue[] venues = dbHandler.getVenueInfo();
-        // Link up with GUI implementation
+        return venues;
     }
 }
