@@ -291,7 +291,7 @@ public class DatabaseConnectionHandler {
         return max;
     }
 
-    public HashMap<Integer,Integer> maxSeatsPerRef(int ref_id) {
+    public HashMap<Integer,Integer> maxSeatsPerRef() {
         HashMap<Integer,Integer> ref_seats = new HashMap<Integer, Integer>();
         try {
             String query = "SELECT ref_id, MAX(V.seats) AS maxSeats FROM venue V, regulates_game_at R WHERE V.venue_id = R.venue_id GROUP BY R.ref_id";

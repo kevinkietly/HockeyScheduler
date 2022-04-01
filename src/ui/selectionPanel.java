@@ -4,6 +4,7 @@ import delegates.MainWindowDelegate;
 import model.venue;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,5 +56,26 @@ public class selectionPanel extends JPanel {
             System.out.println("Venue "+v.getId()+":");
             System.out.println("Address is :"+v.getAddress()+"\n");
         }
+        String column[] = {"Venue ID", "Address", "Rooms", "Seats", "Number of Rinks"};
+        Object data[][] = new Object[venues.length][5];
+        for (int i = 0; i < venues.length; i++) {
+            data[i][0] = venues[i].getId();
+            data[i][1] = venues[i].getAddress();
+            data[i][2] = venues[i].getNumRooms();
+            data[i][3] = venues[i].getNumSeats();
+            data[i][4] = venues[i].getNumRinks();
+        }
+        DefaultTableModel model = new DefaultTableModel(data, column);
+        JTable table = new JTable(model);
+        table.setShowGrid(true);
+        table.setShowVerticalLines(true);
+        JScrollPane pane = new JScrollPane(table);
+        JFrame f = new JFrame("Selection");
+        JPanel panel = new JPanel();
+        panel.add(pane);
+        f.add(panel);
+        f.setSize(500, 250);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
     }
 }

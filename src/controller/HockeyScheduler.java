@@ -87,8 +87,8 @@ public class HockeyScheduler implements LoginWindowDelegate, MainWindowDelegate 
     }
 
     @Override
-    public HashMap<Integer, Integer> maxSeatsPerRef(int ref_id) {
-        return dbHandler.maxSeatsPerRef(ref_id);
+    public HashMap<Integer, Integer> maxSeatsPerRef() {
+        return dbHandler.maxSeatsPerRef();
     }
 
     @Override
