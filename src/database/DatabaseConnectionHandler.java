@@ -277,13 +277,13 @@ public class DatabaseConnectionHandler {
     public HashMap<Integer,Integer> maxSeatsPerRef(int ref_id) {
         HashMap<Integer,Integer> ref_seats = new HashMap<Integer, Integer>();
         try {
-            String query = "SELECT ref_id, MAX(V.seats) FROM venue V, regulates_game_at R WHERE V.venue_id = R.venue_id GROUP BY R.ref_id";
+            String query = "SELECT ref_id, MAX(V.seats) AS maxSeats FROM venue V, regulates_game_at R WHERE V.venue_id = R.venue_id GROUP BY R.ref_id";
             PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()) {
                 Integer id = rs.getInt("ref_id");
-                Integer seats = rs.getInt("seats");
+                Integer seats = rs.getInt("maxSeats");
                 ref_seats.put(id,seats);
             }
 
