@@ -3,6 +3,7 @@ package ui;
 import delegates.MainWindowDelegate;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,5 +52,22 @@ public class JoinPanel extends JPanel {
         String name = coachNameField.getText();
         String[] goalies = delegate.goaliesUnderCoachName(name);
         System.out.println(Arrays.toString(goalies));
+        String column[] = {"Name"};
+        Object data[][] = new Object[goalies.length][1];
+        for (int i = 0; i < goalies.length; i++) {
+            data[i][0] = goalies[i];
+        }
+        DefaultTableModel model = new DefaultTableModel(data, column);
+        JTable table = new JTable(model);
+        table.setShowGrid(true);
+        table.setShowVerticalLines(true);
+        JScrollPane pane = new JScrollPane(table);
+        JFrame f = new JFrame("Join");
+        JPanel panel = new JPanel();
+        panel.add(pane);
+        f.add(panel);
+        f.setSize(500, 250);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
     }
 }

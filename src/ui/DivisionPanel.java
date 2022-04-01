@@ -3,6 +3,7 @@ package ui;
 import delegates.MainWindowDelegate;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,5 +41,24 @@ public class DivisionPanel extends JPanel {
     private void handleInsert() {
         String[] result = delegate.allGameParticipants();
         System.out.println(Arrays.toString(result));
+
+        String column[] = {"Team ID"};
+        Object data[][] = new Object[result.length][1];
+        for (int i = 0; i < result.length; i++) {
+            data[i][0] = result[i];
+        }
+
+        DefaultTableModel model = new DefaultTableModel(data, column);
+        JTable table = new JTable(model);
+        table.setShowGrid(true);
+        table.setShowVerticalLines(true);
+        JScrollPane pane = new JScrollPane(table);
+        JFrame f = new JFrame("Join");
+        JPanel panel = new JPanel();
+        panel.add(pane);
+        f.add(panel);
+        f.setSize(500, 250);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
     }
 }

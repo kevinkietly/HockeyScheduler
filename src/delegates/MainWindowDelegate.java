@@ -13,7 +13,7 @@ public interface MainWindowDelegate {
     public void updatePlayerName(defense p,String name);
     public void updatePlayerName(forward p, String name);
     public String[] goaliesUnderCoachName(String name);
-    public HashMap<Integer, Integer> maxSeatsPerRef(int ref_id);
+    public HashMap<Integer, Integer> maxSeatsPerRef();
     public venue[] selectSpaciousVenues(int minRooms);
     public Object[] getTeamProjection(String column);
     public String[] allGameParticipants();
