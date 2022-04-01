@@ -199,24 +199,37 @@ public class DatabaseConnectionHandler {
         return result.toArray(new venue[result.size()]);
     }
 
-    public String[] getTeamProjection(String column) {
+    public Object[] getTeamProjection(String column) {
 
-        ArrayList<String> result = new ArrayList<>();
+        ArrayList<Object> result = new ArrayList<>();
         try {
-            String query = "SELECT ? FROM team";
+            String query;
+            if (column.equals("name")) {
+                query = "SELECT name FROM team";
+            } else if (column.equals("team_id")) {
+                query = "SELECT team_id FROM team";
+            } else {
+                query = "SELECT org_id FROM team";
+            }
             PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
-            ps.setString(1, column);
             ResultSet rs = ps.executeQuery();
 
-            while(rs.next()) {
-                result.add(column);
+            while (rs.next()) {
+                if (column.equals("name")) {
+                    result.add(rs.getString("name"));
+                } else if (column.equals("team_id")) {
+                    result.add(rs.getInt("team_id"));
+                } else {
+                    result.add(rs.getInt("org_id"));
+                }
             }
+
             rs.close();
             ps.close();
         } catch (SQLException e) {
             System.out.println(EXCEPTION_TAG + " " + e.getMessage());
         }
-        return result.toArray(new String[result.size()]);
+        return result.toArray();
     }
 
     // For join, do we wanna abstract smth into a new, temporary class?
