@@ -75,9 +75,9 @@ public class HockeyScheduler implements LoginWindowDelegate, MainWindowDelegate 
     }
 
     @Override
-    public void selectSpaciousVenues(int minRooms) {
+    public venue[] selectSpaciousVenues(int minRooms) {
         venue[] spaciousVenues = dbHandler.selectSpaciousVenues(minRooms);
-        //Link up with GUI implementation
+        return spaciousVenues;
     }
 
     @Override
